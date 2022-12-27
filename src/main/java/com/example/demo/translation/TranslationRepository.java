@@ -1,9 +1,11 @@
 package com.example.demo.translation;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
-@Repository
-public interface TranslationRepository extends JpaRepository<Translation, Long> {
+/**
+ * @author Edin Mahmutovic
+ */
+public interface TranslationRepository extends JpaRepository<Translation, Long>, JpaSpecificationExecutor<Translation> {
 
 }
