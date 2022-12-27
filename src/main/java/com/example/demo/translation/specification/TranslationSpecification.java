@@ -33,9 +33,9 @@ public class TranslationSpecification implements Specification<Translation> {
         if (filter.getId() != null) {
             predicates.add(criteriaBuilder.equal(root.get("id"), filter.getId()));
         }
-        if (!StringUtils.isEmpty(filter.getKey())) {
-            predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.get("key")),
-                    QueryUtils.contains(filter.getKey())));
+        if (!StringUtils.isEmpty(filter.getKeyes())) {
+            predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.get("keyes")),
+                    QueryUtils.contains(filter.getKeyes())));
         }
         if (!StringUtils.isEmpty(filter.getValue())) {
             predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.get("value")),

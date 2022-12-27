@@ -22,7 +22,7 @@ public interface TranslationMapper {
      */
     default Translation toEntity(TranslationRequest request) {
         var translation = new Translation();
-        translation.setKey(request.getKey());
+        translation.setKeyes(request.getKeyes());
         translation.setValue(request.getValue());
         translation.setDescription(request.getDescription());
         return translation;
@@ -37,7 +37,7 @@ public interface TranslationMapper {
     default TranslationResponse toResponse(Translation entity) {
         var response = new TranslationResponse();
         response.setId(entity.getId());
-        response.setKey(entity.getKey());
+        response.setKeyes(entity.getKeyes());
         response.setValue(entity.getValue());
         response.setPlatform(entity.getPlatform());
         response.setDescription(entity.getDescription());

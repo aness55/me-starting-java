@@ -10,7 +10,7 @@ public class TranslationSearchFilter {
 
     private Long id;
     private String language;
-    private String key;
+    private String keyes;
     private String value;
     private String platform;
 }

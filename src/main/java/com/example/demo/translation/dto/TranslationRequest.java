@@ -9,7 +9,7 @@ import lombok.Data;
 public class TranslationRequest {
 
     private String language;
-    private String key;
+    private String keyes;
     private String platform;
     private String value;
     private String description;

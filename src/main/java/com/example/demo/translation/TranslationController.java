@@ -20,7 +20,6 @@ import java.util.List;
 @RequestMapping({ "/mobile/v1/translations", "/e-banking/v1/translations" })
 @RequiredArgsConstructor
 public class TranslationController {
-
     private final TranslationService translationService;
 
     @GetMapping

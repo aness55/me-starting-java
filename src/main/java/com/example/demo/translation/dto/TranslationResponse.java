@@ -10,7 +10,7 @@ import lombok.Data;
 public class TranslationResponse {
     private Long id;
     private String language;
-    private String key;
+    private String keyes;
     private String description;
     private String value;
     private String platform;
