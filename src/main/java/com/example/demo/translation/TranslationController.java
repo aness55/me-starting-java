@@ -1,32 +1,43 @@
 package com.example.demo.translation;
-
-import lombok.RequiredArgsConstructor;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.example.demo.translation.dto.TranslationResponse;
-import com.example.demo.translation.dto.filter.TranslationSearchFilter;
-
-import org.springframework.data.domain.Page;
-import org.springframework.data.web.PageableDefault;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 @RestController
-@RequestMapping({ "/mobile/v1/translations", "/e-banking/v1/translations" })
-@RequiredArgsConstructor
+@RequestMapping("/translation")
 public class TranslationController {
-    private final TranslationService translationService;
 
-    @GetMapping
-    public ResponseEntity<List<TranslationResponse>> findAll(
-            TranslationSearchFilter filter,
-            @PageableDefault(sort = { "id" }, direction = Sort.Direction.DESC) Pageable pageable) {
-        Page<TranslationResponse> translations = translationService.retrieveAllTranslations(filter, pageable);
-        return ResponseEntity.ok().body(translations.getContent());
+    @Autowired
+    TranslationRepository repository;
+
+    @GetMapping("/{id}")
+    public Translation getTranslation(@PathVariable Long id) {
+        return repository.findById(id).get();
+    }
+
+    @GetMapping()
+    public List<Translation> getTranslationByPlatform(@RequestParam(value = "platform") String platform) {
+        return repository.findByPlatform(platform);
+    }
+
+    @PostMapping()
+    public Translation postTranslation(@RequestBody Translation translation) {
+        return repository.save(translation);
+    }
+
+    @PutMapping("/{id}")
+    public Translation putTranslation(@PathVariable Long id, @RequestBody Translation translation) {
+        Translation oldTranslation = repository.findById(id).get();
+        oldTranslation.setPlatform(translation.getPlatform());
+        oldTranslation.setLanguage(translation.getLanguage());
+        oldTranslation.setValue(translation.getValue());
+        oldTranslation.setDescription(translation.getDescription());
+        oldTranslation.setAppKey(translation.getAppKey());
+        return repository.save(oldTranslation);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteTranslation(@PathVariable Long id) {
+        repository.deleteById(id);
     }
 }

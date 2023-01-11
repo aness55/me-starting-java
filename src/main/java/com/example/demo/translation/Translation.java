@@ -1,39 +1,63 @@
 package com.example.demo.translation;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import javax.persistence.*;
 
-import com.example.demo.translation.enumeration.LanguageEnum;
-
-/**
- * @author Edin Mahmutovic
- */
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "language", "keyes" }))
-@Getter
-@Setter
-@NoArgsConstructor
 public class Translation {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private LanguageEnum language;
-
-    @Column(nullable = false)
-    private String keyes;
-
-    @Column(nullable = false)
+    @GeneratedValue
+    private long id;
+    private String appKey;
     private String platform;
-
-    @Column(nullable = false, length = 1024)
+    private String language;
     private String value;
-
     private String description;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getAppKey() {
+        return appKey;
+    }
+
+    public void setAppKey(String appKey) {
+        this.appKey = appKey;
+    }
+
+    public String getPlatform() {
+        return platform;
+    }
+
+    public void setPlatform(String platform) {
+        this.platform = platform;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }
