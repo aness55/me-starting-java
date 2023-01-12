@@ -1,4 +1,5 @@
 package com.example.demo.translation;
+
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
@@ -16,8 +17,9 @@ public class TranslationController {
     }
 
     @GetMapping()
-    public List<Translation> getTranslationByPlatform(@RequestParam(value = "platform") String platform) {
-        return repository.findByPlatform(platform);
+    public List<Translation> getTranslationByPlatform(@RequestParam(value = "platform") String platform,
+            @RequestParam(value = "language") String language) {
+        return repository.findByPlatformAndLanguage(platform, language);
     }
 
     @PostMapping()
